@@ -1,15 +1,24 @@
 var button = document.querySelector(" form button");
 
-var input = document.querySelector("form input");
+var input = document.querySelector("#selectCountry");
 
 var countryImage = document.querySelector("img");
 
+
+//rendering options
+for (countryCode in countryList) {
+  input.innerHTML += `
+    <option value="${countryList[countryCode]}">${countryCode}</option>
+    `;
+}
+
+
+// flag render handler
 button.addEventListener("click", (event) => {
   event.preventDefault();
-  var inpval = input.value;
-  var country = inpval.toUpperCase();
 
-  countryImage.src = `https://flagsapi.com/${country}/shiny/64.png`;
+  var countryCode = input.value;
+  countryImage.src = `https://flagsapi.com/${countryCode}/shiny/64.png`;
 
   countryImage.addEventListener("error", function () {
     countryImage.src =
